@@ -112,8 +112,8 @@ class AuthActivity : AppCompatActivity() {
         binding.btnAction.text = "Create PIN"
         binding.btnBiometric.visibility = View.GONE
         binding.tvAttemptsWarning.visibility = View.GONE
-        binding.etPin.hint = "Enter PIN (min 6 digits)"
-        binding.etConfirmPin.hint = "Confirm PIN"
+        binding.tilPin.hint = "Enter PIN (min 6 digits)"
+        binding.tilConfirmPin.hint = "Confirm PIN"
     }
 
     private fun showUnlockMode() {
@@ -126,7 +126,7 @@ class AuthActivity : AppCompatActivity() {
         binding.etPin.isEnabled = true
         binding.tilConfirmPin.visibility = View.GONE
         binding.btnAction.text = "Unlock"
-        binding.etPin.hint = "PIN"
+        binding.tilPin.hint = "PIN"
 
         // Auto-launch biometric prompt if enabled
         val biometricEnabled = viewModel.biometricEnabled.value ?: false
