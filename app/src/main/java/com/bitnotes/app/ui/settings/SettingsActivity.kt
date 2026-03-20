@@ -1,6 +1,7 @@
 package com.bitnotes.app.ui.settings
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -78,6 +79,16 @@ class SettingsActivity : AppCompatActivity() {
         // Security info
         binding.btnSecurityInfo.setOnClickListener {
             showSecurityInfo()
+        }
+
+        // Version name
+        val versionName = packageManager.getPackageInfo(packageName, 0).versionName
+        binding.tvVersionName.text = "Version $versionName"
+
+        // View releases
+        binding.btnViewReleases.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(RELEASES_URL))
+            startActivity(intent)
         }
 
         // Wipe all data
@@ -214,5 +225,9 @@ class SettingsActivity : AppCompatActivity() {
             return true
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    companion object {
+        private const val RELEASES_URL = "https://github.com/wintersoldier666/Bitnotes/releases"
     }
 }
