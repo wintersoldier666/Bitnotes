@@ -138,8 +138,8 @@ class SettingsActivity : AppCompatActivity() {
                     Snackbar.make(binding.root, "New PINs don't match", Snackbar.LENGTH_SHORT).show()
                     return@setPositiveButton
                 }
-                if (newPin.length < 4) {
-                    Snackbar.make(binding.root, "PIN must be at least 4 digits", Snackbar.LENGTH_SHORT).show()
+                if (newPin.length < 6) {
+                    Snackbar.make(binding.root, "PIN must be at least 6 digits", Snackbar.LENGTH_SHORT).show()
                     return@setPositiveButton
                 }
 

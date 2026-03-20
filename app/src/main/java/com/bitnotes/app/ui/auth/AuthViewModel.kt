@@ -59,8 +59,8 @@ class AuthViewModel @Inject constructor(
             _authState.value = AuthState.Error("PINs do not match")
             return
         }
-        if (pin.length < 4) {
-            _authState.value = AuthState.Error("PIN must be at least 4 digits")
+        if (pin.length < 6) {
+            _authState.value = AuthState.Error("PIN must be at least 6 digits")
             return
         }
         viewModelScope.launch {

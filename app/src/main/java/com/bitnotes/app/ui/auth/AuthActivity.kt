@@ -107,12 +107,12 @@ class AuthActivity : AppCompatActivity() {
         binding.progressBar.visibility = View.GONE
         binding.contentGroup.visibility = View.VISIBLE
         binding.tvTitle.text = "Create PIN"
-        binding.tvSubtitle.text = "Set a secure PIN to protect your notes.\nMinimum 4 digits."
+        binding.tvSubtitle.text = "Set a secure PIN to protect your notes.\nMinimum 6 digits."
         binding.tilConfirmPin.visibility = View.VISIBLE
         binding.btnAction.text = "Create PIN"
         binding.btnBiometric.visibility = View.GONE
         binding.tvAttemptsWarning.visibility = View.GONE
-        binding.etPin.hint = "Enter PIN"
+        binding.etPin.hint = "Enter PIN (min 6 digits)"
         binding.etConfirmPin.hint = "Confirm PIN"
     }
 
@@ -121,13 +121,22 @@ class AuthActivity : AppCompatActivity() {
         binding.progressBar.visibility = View.GONE
         binding.contentGroup.visibility = View.VISIBLE
         binding.tvTitle.text = "Bitnotes"
-        binding.tvSubtitle.text = "Enter your PIN to unlock"
-        binding.tilConfirmPin.visibility = View.GONE
-        binding.btnAction.text = "Unlock"
-        binding.etPin.hint = "PIN"
         binding.lockoutGroup.visibility = View.GONE
         binding.btnAction.isEnabled = true
         binding.etPin.isEnabled = true
+        binding.tilConfirmPin.visibility = View.GONE
+        binding.btnAction.text = "Unlock"
+        binding.etPin.hint = "PIN"
+
+        // Auto-launch biometric prompt if enabled
+        val biometricEnabled = viewModel.biometricEnabled.value ?: false
+        if (biometricEnabled) {
+            binding.tvSubtitle.text = "Use biometric or enter your PIN"
+            // Slight delay so the UI is visible before the prompt appears
+            binding.root.postDelayed({ showBiometricPrompt() }, 300)
+        } else {
+            binding.tvSubtitle.text = "Enter your PIN to unlock"
+        }
     }
 
     private fun showError(message: String) {

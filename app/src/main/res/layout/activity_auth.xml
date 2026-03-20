@@ -24,17 +24,18 @@
 
         <TextView
             android:id="@+id/tvTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Bitnotes"
             android:textSize="32sp"
             android:textStyle="bold"
             android:textColor="@color/on_surface"
+            android:gravity="center"
             android:layout_marginBottom="8dp" />
 
         <TextView
             android:id="@+id/tvSubtitle"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Enter your PIN to unlock"
             android:textSize="14sp"
