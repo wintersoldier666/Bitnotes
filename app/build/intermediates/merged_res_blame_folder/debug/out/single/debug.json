@@ -1,0 +1,162 @@
+[
+    {
+        "merged": "com.bitnotes.app-merged_res-4:/mipmap-mdpi_ic_launcher_round.xml.flat",
+        "source": "com.bitnotes.app-main-6:/mipmap-mdpi/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.bitnotes.app-merged_res-4:/drawable_ic_save.xml.flat",
+        "source": "com.bitnotes.app-main-6:/drawable/ic_save.xml"
+    },
+    {
+        "merged": "com.bitnotes.app-merged_res-4:/mipmap-xxxhdpi_ic_launcher_round.xml.flat",
+        "source": "com.bitnotes.app-main-6:/mipmap-xxxhdpi/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.bitnotes.app-merged_res-4:/layout_activity_note_editor.xml.flat",
+        "source": "com.bitnotes.app-main-6:/layout/activity_note_editor.xml"
+    },
+    {
+        "merged": "com.bitnotes.app-merged_res-4:/mipmap-xxxhdpi_ic_launcher.xml.flat",
+        "source": "com.bitnotes.app-main-6:/mipmap-xxxhdpi/ic_launcher.xml"
+    },
+    {
+        "merged": "com.bitnotes.app-merged_res-4:/layout_activity_settings.xml.flat",
+        "source": "com.bitnotes.app-main-6:/layout/activity_settings.xml"
+    },
+    {
+        "merged": "com.bitnotes.app-merged_res-4:/menu_main_menu.xml.flat",
+        "source": "com.bitnotes.app-main-6:/menu/main_menu.xml"
+    },
+    {
+        "merged": "com.bitnotes.app-merged_res-4:/mipmap-hdpi_ic_launcher.xml.flat",
+        "source": "com.bitnotes.app-main-6:/mipmap-hdpi/ic_launcher.xml"
+    },
+    {
+        "merged": "com.bitnotes.app-merged_res-4:/layout_dialog_restore_password.xml.flat",
+        "source": "com.bitnotes.app-main-6:/layout/dialog_restore_password.xml"
+    },
+    {
+        "merged": "com.bitnotes.app-merged_res-4:/mipmap-xxhdpi_ic_launcher.xml.flat",
+        "source": "com.bitnotes.app-main-6:/mipmap-xxhdpi/ic_launcher.xml"
+    },
+    {
+        "merged": "com.bitnotes.app-merged_res-4:/mipmap-xhdpi_ic_launcher.xml.flat",
+        "source": "com.bitnotes.app-main-6:/mipmap-xhdpi/ic_launcher.xml"
+    },
+    {
+        "merged": "com.bitnotes.app-merged_res-4:/drawable_ic_search.xml.flat",
+        "source": "com.bitnotes.app-main-6:/drawable/ic_search.xml"
+    },
+    {
+        "merged": "com.bitnotes.app-merged_res-4:/xml_network_security_config.xml.flat",
+        "source": "com.bitnotes.app-main-6:/xml/network_security_config.xml"
+    },
+    {
+        "merged": "com.bitnotes.app-merged_res-4:/layout_item_backup_file.xml.flat",
+        "source": "com.bitnotes.app-main-6:/layout/item_backup_file.xml"
+    },
+    {
+        "merged": "com.bitnotes.app-merged_res-4:/layout_dialog_change_pin.xml.flat",
+        "source": "com.bitnotes.app-main-6:/layout/dialog_change_pin.xml"
+    },
+    {
+        "merged": "com.bitnotes.app-merged_res-4:/mipmap-mdpi_ic_launcher.xml.flat",
+        "source": "com.bitnotes.app-main-6:/mipmap-mdpi/ic_launcher.xml"
+    },
+    {
+        "merged": "com.bitnotes.app-merged_res-4:/drawable_ic_pin.xml.flat",
+        "source": "com.bitnotes.app-main-6:/drawable/ic_pin.xml"
+    },
+    {
+        "merged": "com.bitnotes.app-merged_res-4:/layout_dialog_password_input.xml.flat",
+        "source": "com.bitnotes.app-main-6:/layout/dialog_password_input.xml"
+    },
+    {
+        "merged": "com.bitnotes.app-merged_res-4:/layout_activity_auth.xml.flat",
+        "source": "com.bitnotes.app-main-6:/layout/activity_auth.xml"
+    },
+    {
+        "merged": "com.bitnotes.app-merged_res-4:/drawable_ic_delete.xml.flat",
+        "source": "com.bitnotes.app-main-6:/drawable/ic_delete.xml"
+    },
+    {
+        "merged": "com.bitnotes.app-merged_res-4:/drawable_ic_share.xml.flat",
+        "source": "com.bitnotes.app-main-6:/drawable/ic_share.xml"
+    },
+    {
+        "merged": "com.bitnotes.app-merged_res-4:/mipmap-xhdpi_ic_launcher_round.xml.flat",
+        "source": "com.bitnotes.app-main-6:/mipmap-xhdpi/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.bitnotes.app-merged_res-4:/menu_editor_menu.xml.flat",
+        "source": "com.bitnotes.app-main-6:/menu/editor_menu.xml"
+    },
+    {
+        "merged": "com.bitnotes.app-merged_res-4:/mipmap-xxhdpi_ic_launcher_round.xml.flat",
+        "source": "com.bitnotes.app-main-6:/mipmap-xxhdpi/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.bitnotes.app-merged_res-4:/drawable_ic_settings.xml.flat",
+        "source": "com.bitnotes.app-main-6:/drawable/ic_settings.xml"
+    },
+    {
+        "merged": "com.bitnotes.app-merged_res-4:/layout_item_note.xml.flat",
+        "source": "com.bitnotes.app-main-6:/layout/item_note.xml"
+    },
+    {
+        "merged": "com.bitnotes.app-merged_res-4:/drawable_ic_backup.xml.flat",
+        "source": "com.bitnotes.app-main-6:/drawable/ic_backup.xml"
+    },
+    {
+        "merged": "com.bitnotes.app-merged_res-4:/xml_data_extraction_rules.xml.flat",
+        "source": "com.bitnotes.app-main-6:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.bitnotes.app-merged_res-4:/mipmap-hdpi_ic_launcher_round.xml.flat",
+        "source": "com.bitnotes.app-main-6:/mipmap-hdpi/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.bitnotes.app-merged_res-4:/drawable_ic_lock_shield.xml.flat",
+        "source": "com.bitnotes.app-main-6:/drawable/ic_lock_shield.xml"
+    },
+    {
+        "merged": "com.bitnotes.app-merged_res-4:/drawable_ic_add.xml.flat",
+        "source": "com.bitnotes.app-main-6:/drawable/ic_add.xml"
+    },
+    {
+        "merged": "com.bitnotes.app-merged_res-4:/layout_activity_main.xml.flat",
+        "source": "com.bitnotes.app-main-6:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.bitnotes.app-merged_res-4:/layout_activity_trash.xml.flat",
+        "source": "com.bitnotes.app-main-6:/layout/activity_trash.xml"
+    },
+    {
+        "merged": "com.bitnotes.app-merged_res-4:/xml_backup_rules.xml.flat",
+        "source": "com.bitnotes.app-main-6:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.bitnotes.app-merged_res-4:/drawable_ic_palette.xml.flat",
+        "source": "com.bitnotes.app-main-6:/drawable/ic_palette.xml"
+    },
+    {
+        "merged": "com.bitnotes.app-merged_res-4:/layout_activity_backup.xml.flat",
+        "source": "com.bitnotes.app-main-6:/layout/activity_backup.xml"
+    },
+    {
+        "merged": "com.bitnotes.app-merged_res-4:/drawable_bg_tag.xml.flat",
+        "source": "com.bitnotes.app-main-6:/drawable/bg_tag.xml"
+    },
+    {
+        "merged": "com.bitnotes.app-merged_res-4:/drawable_ic_note_empty.xml.flat",
+        "source": "com.bitnotes.app-main-6:/drawable/ic_note_empty.xml"
+    },
+    {
+        "merged": "com.bitnotes.app-merged_res-4:/xml_file_provider_paths.xml.flat",
+        "source": "com.bitnotes.app-main-6:/xml/file_provider_paths.xml"
+    },
+    {
+        "merged": "com.bitnotes.app-merged_res-4:/drawable_ic_restore.xml.flat",
+        "source": "com.bitnotes.app-main-6:/drawable/ic_restore.xml"
+    }
+]
