@@ -1,125 +1,121 @@
-# 🔒 Bitnotes — Encrypted Offline Notes App for Android
+# Bitnotes
 
-A highly secure, fully offline note-taking app for Android with military-grade encryption and encrypted backup/restore.
+**Offline-first, encrypted notes and password storage for Android.**
+
+Bitnotes keeps your notes and passwords locked behind AES-256-GCM encryption with zero network access. Nothing ever leaves your device unencrypted — not to a server, not to the cloud, not anywhere. The backup file you create is encrypted before it's written, so you can safely store it in Dropbox, Google Drive, or email it to yourself.
 
 ---
 
-## Security Architecture
+## What it's for
 
-### Encryption Stack
-| Layer | Algorithm | Details |
-|-------|-----------|---------|
-| Note Encryption | **AES-256-GCM** | Authenticated encryption, unique IV per note |
-| Key Derivation | **PBKDF2-SHA256** | 310,000 iterations (OWASP 2023 recommendation) |
-| Key Storage | **Android Keystore** | Hardware-backed TEE/SE when available |
-| Backup Encryption | **AES-256-GCM** | Separate password, PBKDF2-derived key |
+- Storing passwords you copy-paste manually
+- Private notes you don't want synced anywhere
+- Sensitive information (seed phrases, PINs, account details)
+- Anything you want encrypted at rest on your device
 
-### Key Hierarchy
+---
+
+## Security
+
+| What | How |
+|------|-----|
+| Note encryption | AES-256-GCM, unique IV per note |
+| Key derivation | PBKDF2-SHA256, 310,000 iterations |
+| Key storage | Android Keystore (hardware-backed TEE) |
+| Biometric unlock | Fingerprint / face, Keystore-wrapped key |
+| Backup encryption | AES-256-GCM, separate password |
+| Network access | None — no INTERNET permission in manifest |
+| Screenshots | Blocked via FLAG_SECURE |
+| Brute-force | Lockout after 5 wrong PINs |
+| Cloud backup | Disabled — Android auto-backup turned off |
+
+### Key hierarchy
+
 ```
-User PIN
+Your PIN
     │
-    ▼ PBKDF2-SHA256 (310,000 iterations + 32-byte random salt)
+    ▼  PBKDF2-SHA256 · 310,000 iterations · 32-byte random salt
     │
 Key Encryption Key (KEK)
     │
-    ▼ AES-256-GCM wrap
+    ▼  AES-256-GCM wrap
     │
-Data Encryption Key (DEK)  ◄─── stored encrypted in DataStore
+Data Encryption Key (DEK)  ──── stored encrypted in DataStore
     │
-    ▼ AES-256-GCM (unique IV per note)
+    ▼  AES-256-GCM · unique IV per note
     │
-Encrypted Notes  ◄─────────── stored in Room database
+Encrypted notes  ──── stored in Room database
 ```
 
-This architecture means:
-- **PIN change** only re-wraps the DEK (no re-encryption of notes)
-- **Biometric unlock** stores KEK encrypted with Android Keystore key
-- **All notes** use the same DEK (efficient), protected by KEK
+- Changing your PIN only re-wraps the DEK — notes are never re-encrypted
+- Enabling biometric stores the KEK encrypted inside the Android Keystore
+- The DEK only exists in memory while the app is unlocked
 
 ---
 
 ## Features
 
-### Security
-- ✅ **AES-256-GCM** encryption for all note data
-- ✅ **PBKDF2-SHA256** (310k iterations) key derivation
-- ✅ **Android Keystore** hardware-backed key storage
-- ✅ **Zero network access** — no INTERNET permission
-- ✅ **Screenshot prevention** — FLAG_SECURE on all activities
-- ✅ **No cloud backup** — all auto-backup disabled
-- ✅ **Brute-force protection** — 5 attempts → 30s lockout
-- ✅ **Biometric unlock** — fingerprint/face with Keystore-backed KEK
-- ✅ **PIN change** without re-encrypting notes
-- ✅ **Wipe all data** — complete secure erase
-- ✅ **Encrypted backup** — AES-256-GCM with separate password
+**Notes**
+- Create, edit, delete notes
+- Pin important notes to the top
+- Color-code notes (6 colors)
+- Add tags for organization
+- Search (decrypted in-memory only, never written to disk)
+- Trash with restore
 
-### App Features
-- 📝 Create, edit, delete notes
-- 📌 Pin notes to top
-- 🎨 Color-code notes (6 colors)
-- 🏷️ Tags for organization
-- 🔍 Encrypted search (decrypted in-memory only)
-- 🗑️ Trash with restore capability
-- 📦 Encrypted backup (.bitnotes files)
-- 🔄 Import/restore from backup
-- 💾 Share backups via any app
+**Security**
+- 6-digit minimum PIN
+- Biometric unlock (fingerprint / face ID)
+- Auto-prompts biometric on open when enabled
+- Change PIN without losing any notes
+- Wipe everything — nukes all notes and keys instantly
+
+**Backup & Restore**
+- Export encrypted `.bitnotes` backup file
+- Separate backup password (independent of your app PIN)
+- Safe to store backup anywhere — encrypted before it's written
+- Import backup on any Android device with Bitnotes installed
 
 ---
 
-## Backup Format
-
-Backup files use the `.bitnotes` extension:
+## Backup file format
 
 ```
-[BITNOTES_BACKUP_V1 header]
-[32-byte PBKDF2 salt]
-[12-byte GCM IV]
-[AES-256-GCM encrypted JSON]
-    └─ BackupData {
-        version, exportedAt,
-        notes: [{ title, content, tags, ... }]
-       }
+BITNOTES_BACKUP_V1  (magic header)
+32-byte PBKDF2 salt
+12-byte GCM IV
+AES-256-GCM ciphertext
+    └─ JSON { version, exportedAt, notes: [...] }
 ```
 
-- **Encrypted with a separate backup password** (not your app PIN)
-- The backup file is **useless without the backup password**
-- Safe to store in cloud storage (Dropbox, Drive, etc.)
+The file is random-looking bytes to anyone without the backup password. Two backups of the same data look completely different (unique salt + IV each time). Safe to store in the cloud.
 
 ---
 
-## Tech Stack
+## Requirements
 
-- **Language**: Kotlin
-- **Min SDK**: 26 (Android 8.0)
-- **Architecture**: MVVM + Repository
-- **DI**: Hilt
-- **Database**: Room (WAL mode)
-- **Crypto**: `javax.crypto` + Android Keystore
-- **Auth**: AndroidX Biometric
-- **Storage**: DataStore (encrypted config)
-- **UI**: Material Design 3
+- Android 8.0+ (API 26)
+- For biometric: device with enrolled fingerprint or face
+
+---
+
+## Tech stack
+
+- **Kotlin** — MVVM + Repository pattern
+- **Hilt** — dependency injection
+- **Room** — local database (WAL mode)
+- **DataStore** — encrypted config and key material
+- **javax.crypto + Android Keystore** — all cryptography
+- **AndroidX Biometric** — fingerprint / face auth
+- **Material Design 3** — UI components
 
 ---
 
 ## Building
 
 ```bash
-./gradlew assembleRelease
+./gradlew assembleDebug    # debug build
+./gradlew assembleRelease  # release build with ProGuard obfuscation
 ```
 
-The release build has:
-- ProGuard minification + obfuscation
-- Debug logging stripped
-- `isDebuggable = false`
-- No network traffic allowed
-
----
-
-## Security Considerations
-
-1. **Notes plaintext never persists** — decryption only in memory
-2. **DEK cleared from memory** when app locks/backgrounds
-3. **Unique IV** generated per encryption operation (prevents IV reuse attacks)
-4. **GCM authentication tag** (128-bit) prevents ciphertext tampering
-5. **Salt** unique per installation (prevents rainbow table attacks)
-6. **PIN hashed** separately from key derivation (timing-safe comparison)
+Release builds have ProGuard minification, debug logging stripped, and `isDebuggable = false`.
