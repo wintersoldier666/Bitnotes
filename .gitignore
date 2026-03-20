@@ -17,3 +17,4 @@ app/build/kotlin/
 app/build/tmp/
 app/build/generated/
 app/build/outputs/logs/
+app/build/
