@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Block all network traffic - truly offline app -->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <!-- No trusted anchors - no network access allowed -->
+        </trust-anchors>
+    </base-config>
+</network-security-config>
