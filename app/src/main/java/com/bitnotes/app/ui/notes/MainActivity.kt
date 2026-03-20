@@ -129,16 +129,35 @@ class MainActivity : AppCompatActivity() {
             .show()
     }
 
+    private var searchView: SearchView? = null
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
 
         val searchItem = menu.findItem(R.id.action_search)
-        val searchView = searchItem.actionView as SearchView
-        searchView.queryHint = "Search notes..."
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        searchView = searchItem.actionView as SearchView
+        searchView?.queryHint = "Search notes..."
+
+        // Restore current search query if active
+        val currentQuery = viewModel.searchQuery.value
+        if (!currentQuery.isNullOrEmpty()) {
+            searchItem.expandActionView()
+            searchView?.setQuery(currentQuery, false)
+            searchView?.clearFocus()
+        }
+
+        searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?) = false
             override fun onQueryTextChange(newText: String?): Boolean {
                 viewModel.updateSearch(newText ?: "")
+                return true
+            }
+        })
+
+        searchItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
+            override fun onMenuItemActionExpand(item: MenuItem): Boolean = true
+            override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
+                viewModel.updateSearch("")
                 return true
             }
         })

@@ -47,23 +47,25 @@ class SettingsActivity : AppCompatActivity() {
             BiometricManager.Authenticators.BIOMETRIC_STRONG
         ) == BiometricManager.BIOMETRIC_SUCCESS
 
+        if (!biometricAvailable) {
+            binding.switchBiometric.isEnabled = false
+            binding.tvBiometricHint.text = "Biometric hardware not available on this device"
+        }
+
+        // Load state first, THEN attach listener to avoid triggering on initial set
         lifecycleScope.launch {
             val biometricEnabled = keyManager.isBiometricEnabled()
             binding.switchBiometric.isChecked = biometricEnabled
-        }
 
-        if (!biometricAvailable) {
-            binding.switchBiometric.isEnabled = false
-            binding.tvBiometricHint.text = "Biometric hardware not available"
-        }
-
-        binding.switchBiometric.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                showEnableBiometricDialog()
-            } else {
-                lifecycleScope.launch {
-                    keyManager.disableBiometric()
-                    Snackbar.make(binding.root, "Biometric unlock disabled", Snackbar.LENGTH_SHORT).show()
+            // Attach listener only after initial state is set
+            binding.switchBiometric.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    showEnableBiometricDialog()
+                } else {
+                    lifecycleScope.launch {
+                        keyManager.disableBiometric()
+                        Snackbar.make(binding.root, "Biometric unlock disabled", Snackbar.LENGTH_SHORT).show()
+                    }
                 }
             }
         }
