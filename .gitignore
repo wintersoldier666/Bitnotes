@@ -10,3 +10,10 @@
 local.properties
 *.keystore
 *.jks
+
+# App build outputs (except APK)
+app/build/intermediates/
+app/build/kotlin/
+app/build/tmp/
+app/build/generated/
+app/build/outputs/logs/
